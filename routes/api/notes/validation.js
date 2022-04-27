@@ -1,7 +1,4 @@
 import Joi from "joi";
-import pkg from "mongoose";
-
-const { Types } = pkg;
 
 const createSchema = Joi.object({
   text: Joi.string().min(2).max(30).required(),
@@ -70,8 +67,10 @@ export const validateUpdate = async (req, res, next) => {
 // };
 
 export const validateId = async (req, res, next) => {
-  if (!Types.ObjectId.isValid(req.params.id)) {
-    return res.status(400).json({ message: "Invalid ObjectId" });
+  try {
+    await IdSchema.validateAsync(req.params);
+  } catch (err) {
+    return res.status(400).json({ message: err.message });
   }
   next();
 };
