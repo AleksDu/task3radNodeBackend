@@ -4,7 +4,7 @@ import cors from "cors";
 import helmet from "helmet";
 import { HttpCode, LIMIT_JSON } from "./lib/constants";
 
-import notesRouter from "./routes/api/notes";
+import notesRouter from "../routes/api/notes";
 
 const app = express();
 
@@ -28,7 +28,7 @@ app.use((req, res) => {
     .json({ status: "error", code: HttpCode.NOT_FOUND, message: "Not found" });
 });
 
-app.use((err, req, res, next) => {
+app.use((err: any, req: any, res: any, next: any) => {
   res.status(HttpCode.INTERNAL_SERVER_ERROR).json({
     status: "fail",
     code: HttpCode.INTERNAL_SERVER_ERROR,

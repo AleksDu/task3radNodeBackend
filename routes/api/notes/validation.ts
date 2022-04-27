@@ -1,4 +1,9 @@
+
+
 import Joi from "joi";
+import {
+  HttpCode
+} from "../../../../lib/constants";
 
 const createSchema = Joi.object({
   text: Joi.string().min(2).max(30).required(),
@@ -29,29 +34,41 @@ const IdSchema = Joi.object({
   id: Joi.string().required(),
 });
 
-export const validateCreate = async (req, res, next) => {
-  try {
-    await createSchema.validateAsync(req.body);
-  } catch (err) {
-    return res
-      .status(400)
-      .json({ message: `Field ${err.message.replace(/"/g, "")}` });
+export const validateCreate = async (req: any, res: any, next:any) =>{
+ {
+    try {
+      const value = await createSchema.validateAsync(req.body);
+    } catch (err: any) {
+      return res.status(HttpCode.BAD_REQUEST).json({
+        status: "error",
+        message: err.message.replace(/"/g, ""),
+      });
+    }
+    next()
+
   }
-  next();
 };
 
-export const validateUpdate = async (req, res, next) => {
-  try {
-    await updateSchema.validateAsync(req.body);
-  } catch (err) {
-    const [{ type }] = err.details;
-    if (type === "object.missing") {
-      return res.status(400).json({ message: "missing fields" });
+
+
+export const validateUpdate = async (req: any, res: any, next:any) => {
+    try {
+      const value = await updateSchema.validateAsync(req.body);
+    } catch (err: any) {
+      const [{ type }] = err.details;
+      if (type === "object.allowUnknown") {
+        return res.status(HttpCode.BAD_REQUEST).json({
+          status: "error",
+          message: "Invalid update fields",
+        });
+      }
+      return res.status(HttpCode.BAD_REQUEST).json({
+        status: "error",
+        message: "missing required fields",
+      });
     }
-    return res.status(400).json({ message: err.message });
-  }
-  next();
-};
+    next();
+  };
 
 // export const validateUpdateFavorite = async (req, res, next) => {
 //   try {
@@ -66,14 +83,18 @@ export const validateUpdate = async (req, res, next) => {
 //   next();
 // };
 
-export const validateId = async (req, res, next) => {
-  try {
-    await IdSchema.validateAsync(req.params);
-  } catch (err) {
-    return res.status(400).json({ message: err.message });
+export const validateId = async (req: any, res: any, next:any) =>
+ {
+    try {
+      const value = await IdSchema.validateAsync(req.params);
+    } catch (err: any) {
+      return res.status(HttpCode.NOT_FOUND).json({
+        status: "error",
+        message: "Note not found",
+      });
+    }
+    next();
   }
-  next();
-};
 
 // export const validateQuery = async (req, res, next) => {
 //   try {
