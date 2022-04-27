@@ -12,11 +12,8 @@ export const HttpCode = {
   INTERNAL_SERVER_ERROR: 500,
 };
 
-export const Role = {
-  ADMIN: "administrator",
-  USER: "user",
-};
+
 
 export const LIMIT_JSON = 5000;
 
-export const CLOUD_FOLDER_AVATARS = "5dz";
+

@@ -4,16 +4,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node -r dotenv/config --es-module-specifier-resolution=node ./bin/server.js",
-    "start:dev": "cross-env NODE_ENV=development  nodemon -r dotenv/config --es-module-specifier-resolution=node ./bin/server.js",
+    "start": "cross-env NODE_ENV=production node -r dotenv/config --es-module-specifier-resolution=node ./build/bin/server.js",
+    "start:dev": "cross-env NODE_ENV=development  nodemon -r dotenv/config --es-module-specifier-resolution=node ./build/bin/server.js",
     "lint": "eslint \"**/*.js\"",
     "lint:fix": "eslint --fix **/*.js",
+    "build": "tsc --project ./tsconfig.json",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
     "test:coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "cloudinary": "^1.28.1",
     "cors": "2.8.5",
     "cron": "^1.8.2",
     "cross-env": "7.0.3",
@@ -26,12 +26,18 @@
     "joi": "^17.5.0",
     "js": "^0.1.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.1.4",
     "morgan": "1.10.0",
-    "multer": "^1.4.4",
-    "node-modules": "^0.0.1"
+    "multer": "^1.4.4"
   },
   "devDependencies": {
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/joi": "^17.2.3",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^17.0.23",
+    "@types/nodemon": "^1.19.1",
     "eslint": "7.19.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "16.0.3",
