@@ -4,8 +4,8 @@ import express,{ NextFunction, Request, Response, Router } from "express";
 import model from "../../../model/index";
 import { HttpCode} from "../../../lib/constants";
 
-import { validateCreate, validateUpdate, validateId } from "../validation";
-import { Note, NoteStats } from '../../types';
+import { validateCreate, validateUpdate, validateId } from "./validation";
+import { Note, NoteStats} from '../../../types'
 
 const router:Router = express.Router();
 

@@ -5,7 +5,7 @@ import logger from "morgan";
 import cors from "cors";
 import { HttpCode, LIMIT_JSON } from './lib/constants';
 
-import notesRouter from "../routes/api/notes/index";
+import notesRouter from './routes/api/notes';
 
 const app = express();
 
