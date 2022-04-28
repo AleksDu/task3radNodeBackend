@@ -26,7 +26,8 @@ const listNotes = () => {
 }
 
 const getNoteById = (noteId: string) => {
-  return notes.find((note: Note | undefined) => note.id === noteId);
+  const note: Note | undefined = notes.find(note => note.id == noteId)
+  return note;
 };
 
 const stats = () => {
@@ -36,9 +37,8 @@ const stats = () => {
     const obj: NoteStats = {
       [uniqueCategories]: {
         active: notes.filter(
-          (note) =>
-            note.category === uniqueCategories && note.isArchived === false
-        ).length,
+          note =>
+            note.category === uniqueCategories && note.isArchived === false).length,
         isArchived: notes.filter(
           (note) =>
             note.category === uniqueCategories && note.isArchived === true
@@ -56,19 +56,19 @@ const deleteNote = async (noteId: string) =>
     if (!notePersist) {
       return null;
     }
-    const noteIndex: Note[] = notes.findIndex((note) => note.id === noteId);
-    notes.splice(noteIndex, 1);
-    await fs.writeFile(notesPath, JSON.stringify(notes, null, 2));
-    return notePersist;
+  const notesDeleted: Note[] = notes.findIndex((note) => note.id !== noteId);
+  await fs.writeFile(notesPath, JSON.stringify(notesDeleted, null, 2));
+  return notesDeleted;
+  
   }
 
 const addNote = async (body: AddBodyType) =>  {
-    const note: Note = { id: randomUUID(), ...body, 
+    const newNote: Note = { id: randomUUID(), ...body, 
       isArchived: false,
     };
-    notes.push(note);
+    notes.push(newNote);
     await fs.writeFile(notesPath, JSON.stringify(notes, null, 2));
-    return note;
+    return newNote;
   }
 
 

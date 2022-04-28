@@ -1,0 +1,58 @@
+[
+    {
+        "text": " 3/05/2021, 5/05/2021 Shopping list",
+        "time": "2021-4-20 | 10:17",
+        "category": "Task",
+        "dates": [],
+        "isArchived": "false",
+        "id": "1"
+    },
+    {
+        "text": "The theory of evolution",
+        "category": "Random Thought",
+        "time": "2021-4-27 | 10:15",
+        "dates": ["3/05/2021, 5/05/2021"],
+        "isArchived": "false",
+        "id": "2"
+    },
+    {
+        "text": "New Feature",
+        "category": "Idea",
+        "time": "2021-5-5 | 10:30",
+        "dates": [],
+        "isArchived": "true",
+        "id": "3"
+    },
+    {
+        "text": "William Gaddis",
+        "category": "Quote",
+        "time": "2022-5-7 | 11:00",
+        "dates": [],
+        "isArchived": "true",
+        "id": "4"
+    },
+    {
+        "text": "Books",
+        "category": "Task",
+        "time": "2021-5-15 | 10:35",
+        "dates": [],
+        "isArchived": "true",
+        "id": "5"
+    },
+    {
+        "text": "War",
+        "category": "Evil",
+        "time": "2022-5-1 | 13:12",
+        "dates": [],
+        "isArchived": "false",
+        "id": "6"
+    },
+    {
+        "text": "God",
+        "category": "Strong",
+        "time": "01-01-01 | 00:00",
+        "dates": [],
+        "isArchived": "true",
+        "id": "7"
+    }
+]
